@@ -30,8 +30,8 @@
 
         <nav class="templatemo-left-nav">          
           <ul>
-            <li><a href="index.html"><i class="fa fa-home fa-fw"></i>首頁</a></li>
-            <li><a href="#" class="active"><i class="fa fa-book fa-fw"></i>文章</a></li>
+            <li><a href="#" class="active"><i class="fa fa-home fa-fw"></i>首頁</a></li>
+            <li><a href="article.html"><i class="fa fa-book fa-fw"></i>文章</a></li>
             <li><a href="database.html"><i class="fa fa-database fa-fw"></i>資料庫</a></li>
           </ul>  
         </nav>
@@ -50,18 +50,17 @@
             </nav> 
           </div>
         </div>
+      
         <!-- context -->
         <div class="templatemo-content-container">
           <div class="templatemo-flex-row flex-content-row">
-            
             <!-- article -->
-			<div class="templatemo-content-widget white-bg col-2">
-				<i class="fa fa-times"></i>
-				<h2 class="templatemo-inline-block"><%= article.title %></h2><hr>
-				<div class="date"><%= article.created_at.toDateString() %></div>
-				<p><%- article.content %></p>
-				
-			</div>
+            <div class="templatemo-content-widget white-bg col-2">
+              <i class="fa fa-times"></i>
+              <h2 class="templatemo-inline-block">標題</h2><hr>
+              <p>內容</p>              
+            </div>
+
             <!-- table -->
             <div class="col-1">
               <div class="panel panel-default templatemo-content-widget white-bg no-padding templatemo-overflow-hidden">
@@ -94,11 +93,11 @@
                   </table>    
                 </div>                          
               </div>
-            </div>      
-                 
+            </div>
+
           </div>       
         </div>
-
+        
       </div>
     </div>
     <!-- bottom -->

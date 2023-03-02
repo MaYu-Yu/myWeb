@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title><%= article.title %></title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			font-size: 16px;
+			line-height: 1.5;
+			margin: 0;
+			padding: 0;
+		}
+
+		h1 {
+			font-size: 36px;
+			margin-bottom: 16px;
+		}
+
+		p {
+			margin-bottom: 16px;
+		}
+
+		img {
+			max-width: 100%;
+			height: auto;
+			margin-bottom: 16px;
+		}
+
+		.date {
+			font-size: 14px;
+			color: #999;
+			margin-bottom: 16px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1><%= article.title %></h1>
+		<div class="date"><%= article.created_at.toDateString() %></div>
+		<%- article.content %>
+	</div>
+</body>
+</html>

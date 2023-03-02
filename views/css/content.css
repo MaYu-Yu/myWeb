@@ -1,0 +1,48 @@
+#editor {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    color: #333;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  
+  #editor h1 {
+    font-size: 24px;
+    color: #007bff;
+  }
+  
+  #editor h2 {
+    font-size: 20px;
+    color: #007bff;
+  }
+  
+  #editor h3 {
+    font-size: 18px;
+    color: #007bff;
+  }
+  
+  #editor p {
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+  
+  #editor a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  #editor a:hover {
+    text-decoration: underline;
+  }
+  
+  #editor ul,
+  #editor ol {
+    margin-bottom: 10px;
+    margin-left: 20px;
+  }
+  
+  #editor li {
+    margin-bottom: 5px;
+  }
+  

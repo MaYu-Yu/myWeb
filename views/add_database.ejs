@@ -43,59 +43,51 @@
         <div class="row">
           <nav class="templatemo-top-nav col-lg-12 col-md-12">
             <ul class="text-uppercase">
-              <li><a href="/database" class="active">內容</a></li>
+              <li><a href="/">內容</a></li>
               <li><a href="/post_article"><i class="fa fa-sliders fa-fw"></i>發表文章</a></li>
-              <li><a href="/add_database"><i class="fa fa-sliders fa-fw"></i>新增資料庫</a></li>
+              <li><a href="/add_database" class="active"><i class="fa fa-sliders fa-fw"></i>新增資料庫</a></li>
               <li><a href="/login"><i class="fa fa-eject fa-fw"></i>登入</a></li>
             </ul>
           </nav>
         </div>
       </div>
-      <!-- context -->
       <div class="templatemo-content-container">
-        <div class="templatemo-flex-row flex-content-row">
-          <!-- table -->
-          <div class="col-1">
-            <div class="panel panel-default templatemo-content-widget white-bg no-padding templatemo-overflow-hidden">
-              <i class="fa fa-times"></i>
-              <% for (var i=0; i < tables.length; i++) { %>
-                <div class="panel-heading templatemo-position-relative">
-                  <h1 class="text-uppercase">
-                    <%= tables[i].name %>
-                  </h1>
-                </div>
-                <div class="table-responsive">
-                  <table class="table table-striped table-bordered" id="table">
-                    <thead>
-                      <tr>
-                        <% tables[i].headers.forEach(function(header) { %>
-                          <th>
-                            <%= header %>
-                          </th>
-                          <% }); %>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <% tables[i].rows.forEach(function(row) { %>
-                        <tr>
-                          <% Object.values(row).forEach(function(value) { %>
-                            <td>
-                              <%= value %>
-                            </td>
-                            <% }); %>
-                        </tr>
-                        <% }); %>
-                    </tbody>
-                  </table>
-                </div>
-              <% } %>
+        <div class="templatemo-content-widget white-bg">
+          <h2 class="margin-bottom-10">新增資料庫</h2>
+          <p>Here goes another form and form controls.</p>
+          <form action="add_database_to_db" class="templatemo-login-form" method="post"
+            enctype="multipart/form-data">
+            <div class="row form-group">
+              <div class="col-lg-6 col-md-6 form-group">
+                <label for="inputFirstName">資料庫名稱</label>
+                <input type="text" class="form-control" name="db_name" placeholder="SDH設備">
+              </div>
             </div>
-          </div>
+            <div class="row form-group">
+              <div class="col-lg-12">
+                <label class="control-label templatemo-block">File Input</label>
+                <input type="file" name="input" id="input" class="filestyle" data-buttonName="btn-primary"
+                  data-buttonBefore="true" data-icon="false" accept=".xlsx,.xls" style="display:none">
+
+                <p>Maximum upload size is 10 MB.</p>
+              </div>
+            </div>
+            <div class="form-group text-right">
+              <button type="submit" class="templatemo-blue-button">新增</button>
+              <button type="reset" class="templatemo-white-button">清空</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </div>
-  <!-- bottom -->
+
+  <!-- JS -->
+  <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script> <!-- jQuery -->
+  <script type="text/javascript" src="js/bootstrap-filestyle.min.js"></script>
+  <!-- http://markusslima.github.io/bootstrap-filestyle/ -->
+  <script type="text/javascript" src="js/templatemo-script.js"></script> <!-- Templatemo Script -->
+  <!-- 底部 -->
   <footer class="text-right">
     <p>
       Designed By <a href="#">林宏勲</a>

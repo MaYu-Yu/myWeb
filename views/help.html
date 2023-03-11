@@ -1,0 +1,437 @@
+<!-- jpg -->
+<div class="templatemo-content-widget white-bg col-1 text-center">
+    <i class="fa fa-times"></i>
+    <h2 class="text-uppercase">Maris</h2>
+    <h3 class="text-uppercase margin-bottom-10">Design Project</h3>
+    <img src="images/bicycle.jpg" alt="Bicycle" class="img-circle img-thumbnail">
+    </div>
+    <!-- progress bar -->
+    <div class="templatemo-content-widget white-bg col-1">
+    <i class="fa fa-times"></i>
+    <h2 class="text-uppercase">Dictum</h2>
+    <h3 class="text-uppercase">Sedvel Erat Non</h3><hr>
+    <div class="progress">
+        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
+    </div>
+    <div class="progress">
+        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 50%;"></div>
+    </div>
+    <div class="progress">
+        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
+    </div>                          
+    </div>
+</div>
+<!-- 圖形  -->
+<div class="templatemo-flex-row flex-content-row templatemo-overflow-hidden"> <!-- overflow hidden for iPad mini landscape view-->
+<div class="col-1 templatemo-overflow-hidden">
+    <div class="templatemo-content-widget white-bg templatemo-overflow-hidden">
+    <i class="fa fa-times"></i>
+    <div class="templatemo-flex-row flex-content-row">
+        <div class="col-1 col-lg-6 col-md-12">
+        <h2 class="text-center">Modular<span class="badge">new</span></h2>
+        <div id="pie_chart_div" class="templatemo-chart"></div> <!-- Pie chart div -->
+        </div>
+        <div class="col-1 col-lg-6 col-md-12">
+        <h2 class="text-center">Interactive<span class="badge">new</span></h2>
+        <div id="bar_chart_div" class="templatemo-chart"></div> <!-- Bar chart div -->
+        </div>  
+    </div>                
+    </div>
+</div>
+</div>
+<!-- JS -->
+<script src="js/jquery-1.11.2.min.js"></script>      <!-- jQuery -->
+<script src="js/jquery-migrate-1.2.1.min.js"></script> <!--  jQuery Migrate Plugin -->
+<script src="https://www.google.com/jsapi"></script> <!-- Google Chart -->
+<script>
+  /* Google Chart 
+  -------------------------------------------------------------------*/
+  // Load the Visualization API and the piechart package.
+  google.load('visualization', '1.0', {'packages':['corechart']});
+
+  // Set a callback to run when the Google Visualization API is loaded.
+  google.setOnLoadCallback(drawChart); 
+  
+  // Callback that creates and populates a data table,
+  // instantiates the pie chart, passes in the data and
+  // draws it.
+  function drawChart() {
+
+      // Create the data table.
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Topping');
+      data.addColumn('number', 'Slices');
+      data.addRows([
+        ['Mushrooms', 3],
+        ['Onions', 1],
+        ['Olives', 1],
+        ['Zucchini', 1],
+        ['Pepperoni', 2]
+      ]);
+
+      // Set chart options
+      var options = {'title':'How Much Pizza I Ate Last Night'};
+
+      // Instantiate and draw our chart, passing in some options.
+      var pieChart = new google.visualization.PieChart(document.getElementById('pie_chart_div'));
+      pieChart.draw(data, options);
+
+      var barChart = new google.visualization.BarChart(document.getElementById('bar_chart_div'));
+      barChart.draw(data, options);
+  }
+
+  $(document).ready(function(){
+    if($.browser.mozilla) {
+      //refresh page on browser resize
+      // http://www.sitepoint.com/jquery-refresh-page-browser-resize/
+      $(window).bind('resize', function(e)
+      {
+        if (window.RT) clearTimeout(window.RT);
+        window.RT = setTimeout(function()
+        {
+          this.location.reload(false); /* false to get page from cache */
+        }, 200);
+      });      
+    } else {
+      $(window).resize(function(){
+        drawChart();
+      });  
+    }   
+  });
+  
+</script>
+
+<div class="templatemo-content-container">         
+  <div class="templatemo-content-widget white-bg">
+    <h2 class="margin-bottom-10">Data Visualization</h2>
+    <p>Credit goes to <a href="https://google-developers.appspot.com/chart/" target="_parent">Google Charts</a></p>
+    <div class="panel panel-default no-border">
+      <div class="panel-heading border-radius-10">
+        <h2>Gauge</h2>
+      </div>
+      <div class="panel-body">
+        <div class="templatemo-flex-row flex-content-row margin-bottom-30">
+          <div class="col-1">
+            <div id="gauge_div" class="templatemo-chart"></div>
+            <h3 class="text-center margin-bottom-5">Computer Resources</h3>
+            <p class="text-center">Curabitur</p>              
+          </div>              
+        </div>     
+      </div>
+    </div>            
+    <div class="panel panel-default no-border">
+      <div class="panel-heading border-radius-10">
+        <h2>Timeline</h2>
+      </div>
+      <div class="panel-body">
+        <div class="templatemo-flex-row flex-content-row">
+          <div class="col-1">
+            <div id="timeline_div" class="templatemo-chart"></div>
+            <h3 class="text-center margin-bottom-5">Conference Schedule</h3>
+            <p class="text-center">Lorem Ipsum</p>                
+          </div>              
+        </div>
+      </div> 
+    </div>
+    <div class="panel panel-default no-border">
+      <div class="panel-heading border-radius-10">
+        <h2>Area Chart</h2>
+      </div>
+      <div class="panel-body">
+        <div class="templatemo-flex-row flex-content-row">
+          <div class="col-1">
+            <div id="area_chart_div" class="templatemo-chart"></div>
+            <h3 class="text-center margin-bottom-5">Company Performance</h3>
+            <p class="text-center">Fusce mi lacus</p>                
+          </div>              
+        </div>
+      </div> 
+    </div>
+  </div>
+  <footer class="text-right">
+    <p>Copyright &copy; 2084 Company Name 
+    | Design: Template Mo</p>
+  </footer>         
+</div>
+</div>
+</div>
+
+<!-- JS -->
+<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>      <!-- jQuery -->
+<script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script> <!--  jQuery Migrate Plugin -->
+<script type="text/javascript" src="https://www.google.com/jsapi"></script> <!-- Google Chart -->
+<script>
+
+var gaugeChart;
+var gaugeData;
+var gaugeOptions;
+var timelineChart;
+var timelineDataTable;
+var timelineOptions;
+var areaData;
+var areaOptions;
+var areaChart;
+
+/* Gauage 
+--------------------------------------------------*/
+google.load("visualization", "1", {packages:["gauge"]});
+google.setOnLoadCallback(drawGauge);
+google.load("visualization", "1", {packages:["timeline"]});
+google.setOnLoadCallback(drawTimeline);
+google.load("visualization", "1", {packages:["corechart"]});
+google.setOnLoadCallback(drawChart);
+
+$(document).ready(function(){
+if($.browser.mozilla) {
+  //refresh page on browser resize
+  // http://www.sitepoint.com/jquery-refresh-page-browser-resize/
+  $(window).bind('resize', function(e)
+  {
+    if (window.RT) clearTimeout(window.RT);
+    window.RT = setTimeout(function()
+    {
+      this.location.reload(false); /* false to get page from cache */
+    }, 200);
+  });      
+} else {
+  $(window).resize(function(){
+    drawCharts();
+  });  
+}   
+});
+
+function drawGauge() {
+
+gaugeData = google.visualization.arrayToDataTable([
+  ['Label', 'Value'],
+  ['Memory', 80],
+  ['CPU', 55],
+  ['Network', 68]
+]);
+
+gaugeOptions = {
+  redFrom: 90, redTo: 100,
+  yellowFrom:75, yellowTo: 90,
+  minorTicks: 5
+};
+
+gaugeChart = new google.visualization.Gauge(document.getElementById('gauge_div'));
+gaugeChart.draw(gaugeData, gaugeOptions);
+
+setInterval(function() {
+  gaugeData.setValue(0, 1, 40 + Math.round(60 * Math.random()));
+  gaugeChart.draw(gaugeData, gaugeOptions);
+}, 13000);
+setInterval(function() {
+  gaugeData.setValue(1, 1, 40 + Math.round(60 * Math.random()));
+  gaugeChart.draw(gaugeData, gaugeOptions);
+}, 5000);
+setInterval(function() {
+  gaugeData.setValue(2, 1, 60 + Math.round(20 * Math.random()));
+  gaugeChart.draw(gaugeData, gaugeOptions);
+}, 26000);        
+} // End function drawGauage
+
+/* Timeline
+--------------------------------------------------*/
+function drawTimeline() {
+var container = document.getElementById('timeline_div');
+timelineChart = new google.visualization.Timeline(container);
+timelineDataTable = new google.visualization.DataTable();
+timelineDataTable.addColumn({ type: 'string', id: 'Room' });
+timelineDataTable.addColumn({ type: 'string', id: 'Name' });
+timelineDataTable.addColumn({ type: 'date', id: 'Start' });
+timelineDataTable.addColumn({ type: 'date', id: 'End' });
+timelineDataTable.addRows([
+  [ 'Magnolia Room',  'CSS Fundamentals',    new Date(0,0,0,12,0,0),  new Date(0,0,0,14,0,0) ],
+  [ 'Magnolia Room',  'Intro JavaScript',    new Date(0,0,0,14,30,0), new Date(0,0,0,16,0,0) ],
+  [ 'Magnolia Room',  'Advanced JavaScript', new Date(0,0,0,16,30,0), new Date(0,0,0,19,0,0) ],
+  [ 'Gladiolus Room', 'Intermediate Perl',   new Date(0,0,0,12,30,0), new Date(0,0,0,14,0,0) ],
+  [ 'Gladiolus Room', 'Advanced Perl',       new Date(0,0,0,14,30,0), new Date(0,0,0,16,0,0) ],
+  [ 'Gladiolus Room', 'Applied Perl',        new Date(0,0,0,16,30,0), new Date(0,0,0,18,0,0) ],
+  [ 'Petunia Room',   'Google Charts',       new Date(0,0,0,12,30,0), new Date(0,0,0,14,0,0) ],
+  [ 'Petunia Room',   'Closure',             new Date(0,0,0,14,30,0), new Date(0,0,0,16,0,0) ],
+  [ 'Petunia Room',   'App Engine',          new Date(0,0,0,16,30,0), new Date(0,0,0,18,30,0) ]]);
+
+timelineOptions = {
+  timeline: { colorByRowLabel: true },
+  backgroundColor: '#ffd'
+};
+
+timelineChart.draw(timelineDataTable, timelineOptions);
+} // End function drawTimeline
+
+/* Area Chart 
+--------------------------------------------------*/
+function drawChart() {
+areaData = google.visualization.arrayToDataTable([
+  ['Year', 'Sales', 'Expenses'],
+  ['2013',  1000,      400],
+  ['2014',  1170,      460],
+  ['2015',  660,       1120],
+  ['2016',  1030,      540]
+]);
+
+areaOptions = {
+  title: 'Company Performance',
+  hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
+  vAxis: {minValue: 0}
+};
+
+areaChart = new google.visualization.AreaChart(document.getElementById('area_chart_div'));
+areaChart.draw(areaData, areaOptions);
+} // End function drawChart
+
+function drawCharts () {
+  gaugeChart.draw(gaugeData, gaugeOptions);
+  timelineChart.draw(timelineDataTable, timelineOptions);
+  areaChart.draw(areaData, areaOptions);
+}
+
+</script>
+
+
+<div class="templatemo-flex-row flex-content-row">
+  <div class="col-1">
+    <div class="panel panel-default margin-10">
+      <div class="panel-heading"><h2 class="text-uppercase">Login Form</h2></div>
+      <div class="panel-body">
+        <form action="index.html" class="templatemo-login-form">
+          <div class="form-group">
+            <label for="inputEmail">Email address</label>
+            <input type="email" class="form-control" id="inputEmail" placeholder="Enter email">
+          </div>
+          <div class="form-group">                      
+            <label for="inputEmail">Password</label>
+            <input type="password" class="form-control" placeholder="Enter password">                                 
+          </div>              
+          <div class="form-group">
+              <div class="checkbox squaredTwo">
+                  <label>
+                    <input type="checkbox"> Remember me
+                  </label>
+              </div>            
+          </div>
+          <div class="form-group">
+            <button type="submit" class="templatemo-blue-button">Submit</button>
+          </div>
+        </form>
+      </div>                
+    </div>              
+  </div>
+  <div class="col-1">              
+    <div class="templatemo-content-widget pink-bg">
+      <i class="fa fa-times"></i>                
+      <h2 class="text-uppercase margin-bottom-10">Latest Data</h2>
+      <p class="margin-bottom-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc mi sapien, fringilla at orci nec, viverra rhoncus leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus rhoncus erat non purus commodo, sit amet varius dolor sagittis.</p>                  
+    </div>            
+    <div class="templatemo-content-widget blue-bg">
+      <i class="fa fa-times"></i>
+      <h2 class="text-uppercase margin-bottom-10">Older Data</h2>
+      <p class="margin-bottom-0">Phasellus dapibus nulla quis risus auctor, non placerat augue consectetur. Aliquam convallis pharetra odio, in convallis erat molestie sed. Fusce mi lacus, semper sit amet mattis eu, volutpat vitae enim.</p>                
+    </div>            
+  </div>                       
+</div> 
+<!-- Second row ends -->
+<div class="templatemo-flex-row flex-content-row">
+  <div class="templatemo-content-widget white-bg col-2">
+    <i class="fa fa-times"></i>
+    <div class="media margin-bottom-30">
+      <div class="media-left padding-right-25">
+        <a href="#">
+          <img class="media-object img-circle templatemo-img-bordered" src="images/person.jpg" alt="Sunset">
+        </a>
+      </div>
+      <div class="media-body">
+        <h2 class="media-heading text-uppercase blue-text">John Barnet</h2>
+        <p>Project Manager</p>
+      </div>        
+    </div>
+    <div class="table-responsive">
+      <table class="table">
+        <tbody>
+          <tr>
+            <td><div class="circle green-bg"></div></td>
+            <td>New Task Issued</td>
+            <td>02</td>                    
+          </tr> 
+          <tr>
+            <td><div class="circle pink-bg"></div></td>
+            <td>Task Pending</td>
+            <td>22</td>                    
+          </tr>  
+          <tr>
+            <td><div class="circle blue-bg"></div></td>
+            <td>Inbox</td>
+            <td>13</td>                    
+          </tr>  
+          <tr>
+            <td><div class="circle yellow-bg"></div></td>
+            <td>New Notification</td>
+            <td>18</td>                    
+          </tr>                                      
+        </tbody>
+      </table>
+    </div>             
+  </div>
+  <div class="templatemo-content-widget white-bg col-1 text-center templatemo-position-relative">
+    <i class="fa fa-times"></i>
+    <img src="images/person.jpg" alt="Bicycle" class="img-circle img-thumbnail margin-bottom-30">
+    <h2 class="text-uppercase blue-text margin-bottom-5">Paul Smith</h2>
+    <h3 class="text-uppercase margin-bottom-70">Managing Director</h3>
+    <div class="templatemo-social-icons-container">
+      <div class="social-icon-wrap">
+        <i class="fa fa-facebook templatemo-social-icon"></i>  
+      </div>
+      <div class="social-icon-wrap">
+        <i class="fa fa-twitter templatemo-social-icon"></i>  
+      </div>
+      <div class="social-icon-wrap">
+        <i class="fa fa-google-plus templatemo-social-icon"></i>  
+      </div>                
+    </div>
+  </div>
+  <div class="templatemo-content-widget white-bg col-1 templatemo-position-relative templatemo-content-img-bg">
+    <img src="images/sunset-big.jpg" alt="Sunset" class="img-responsive content-bg-img">
+    <i class="fa fa-heart"></i>
+    <h2 class="templatemo-position-relative white-text">Sunset</h2>
+    <div class="view-img-btn-wrap">
+      <a href="" class="btn btn-default templatemo-view-img-btn">View</a>  
+    </div>              
+  </div>
+</div>
+<div class="pagination-wrap">
+  <ul class="pagination">
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li class="active"><a href="#">3 <span class="sr-only">(current)</span></a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li>
+      <a href="#" aria-label="Next">
+        <span aria-hidden="true"><i class="fa fa-play"></i></span>
+      </a>
+    </li>
+  </ul>
+</div>        
+<!-- JS -->
+<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>      <!-- jQuery -->
+<script type="text/javascript" src="js/templatemo-script.js"></script>      <!-- Templatemo Script -->
+<script>
+  $(document).ready(function(){
+    // Content widget with background image
+    var imageUrl = $('img.content-bg-img').attr('src');
+    $('.templatemo-content-img-bg').css('background-image', 'url(' + imageUrl + ')');
+    $('img.content-bg-img').hide();        
+  });
+</script>
+    <!-- bottom -->
+    <footer class="text-right">
+      <p>
+        Designed By <a href="#">林宏勲</a> 
+        Phone : <a href="tel:0956168012">0956168012</a>
+        eMail : <a href="mailto:cht_lin@cht.com.tw">cht_lin@cht.com.tw</a>
+      </p>
+    </footer>
+      
+    <script type="text/javascript" src="js/templatemo-script.js"></script>      <!-- Templatemo Script -->

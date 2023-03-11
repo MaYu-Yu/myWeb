@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="utf-8">
+  <title>二股 - Home</title>
+  <!-- CSS -->
+  <link href="/css/OpenSans.css" rel="stylesheet" type="text/css">
+  <link href="/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/templatemo-style.css" rel="stylesheet">
+  <!-- CKEditor -->
+  <script src="/js/ckeditor.js"></script>
+</head>
+
+<body>
+  <!-- Left nav -->
+  <div class="templatemo-flex-row">
+    <div class="templatemo-sidebar">
+      <header class="templatemo-site-header">
+        <h1><a href="/">一網維二股</a></h1>
+      </header>
+      <!-- Search box -->
+      <form class="templatemo-search-form" role="search">
+        <div class="input-group">
+          <button type="submit" class="fa fa-search"></button>
+          <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+        </div>
+      </form>
+      <div class="mobile-menu-icon">
+        <i class="fa fa-bars"></i>
+      </div>
+
+      <nav class="templatemo-left-nav">
+        <ul>
+          <li><a href="/"><i class="fa fa-home fa-fw"></i>首頁</a></li>
+          <li><a href="/article" class="active"><i class="fa fa-book fa-fw"></i>文章</a></li>
+          <li><a href="/database"><i class="fa fa-database fa-fw"></i>資料庫</a></li>
+        </ul>
+      </nav>
+    </div>
+    <!-- Top nav -->
+    <div class="templatemo-content col-1 light-gray-bg">
+      <div class="templatemo-top-nav-container">
+        <div class="row">
+          <nav class="templatemo-top-nav col-lg-12 col-md-12">
+            <ul class="text-uppercase">
+              <li><a href="/">內容</a></li>
+              <li><a href="/post_article" class="active"><i class="fa fa-sliders fa-fw"></i>發表文章</a></li>
+              <li><a href="/add_database"><i class="fa fa-sliders fa-fw"></i>新增資料庫</a></li>
+              <li><a href="/login"><i class="fa fa-eject fa-fw"></i>登入</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="templatemo-content-container">
+        <div class="templatemo-content-widget white-bg">
+          <h1 class="margin-bottom-10">發表文章</h1>
+          <form action="/update_article" method="POST">
+            <input type="hidden" name="id" value="<%= article.id %>">
+            <div class="row form-group">
+              <div class="col-lg-3 col-md-3 form-group">
+                <label class="control-label templatemo-block">發表者</label>
+                <select name="author" id="author" multiple class="templatemo-multi-select form-control" style="overflow-y: scroll;">
+                  <option value="A先生" <%= article.author === 'A先生' ? 'selected' : '' %>>A先生</option>
+                  <option value="B先生" <%= article.author === 'B先生' ? 'selected' : '' %>>B先生</option>
+                  <option value="C先生" <%= article.author === 'C先生' ? 'selected' : '' %>>C先生</option>
+                  <option value="D先生" <%= article.author === 'D先生' ? 'selected' : '' %>>D先生</option>
+                  <option value="E先生" <%= article.author === 'E先生' ? 'selected' : '' %>>E先生</option>
+                  <option value="F先生" <%= article.author === 'F先生' ? 'selected' : '' %>>F先生</option>
+                  <option value="G先生" <%= article.author === 'G先生' ? 'selected' : '' %>>G先生</option>
+                </select>
+              </div>
+            </div>
+            <div class="row form-group">
+              <div class="col-lg-3">
+                <label for="title">標題</label>
+                <input type="text" name="title" class="form-control" value="<%= article.title %>">
+              </div>
+            </div>
+            <div class="row form-group">
+              <div class="col-lg-12">
+                <label class="control-label" for="content">文章內容</label>
+                <textarea name="content" id="content" class="form-control"><%= article.content %></textarea>
+              </div>
+            </div>
+            <div class="form-group text-left">
+              <button type="submit" class="templatemo-blue-button">修改</button>
+              <button type="reset" class="templatemo-white-button">復原</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const author = document.getElementById('author');
+    const submitButton = document.querySelector('button[type="submit"]');
+
+    submitButton.addEventListener('click', (event) => {
+      const selectedOptions = Array.from(author.options).filter(option => option.selected);
+      if (selectedOptions.length === 0) {
+        event.preventDefault(); // 防止提交表單
+        alert('請選擇一個作者。');
+      }
+    });
+  </script>
+
+  <script>
+    ClassicEditor
+      .create(document.querySelector('#content'), {
+        toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', '|', 'imageUpload', 'imageInsert', 'insertTable', 'tableInsert', 'undo', 'redo'],
+        language: 'zh-hant',
+        table: {
+          contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells']
+        },
+        heading: {
+          options: [
+            { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+            { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+            { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
+          ]
+        },
+        placeholder: '輸入內容...'
+      })
+      .then(editor => {
+        console.log(Array.from(editor.ui.componentFactory.names()));
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  </script>
+  <!-- JS -->
+  <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script> <!-- jQuery -->
+  <script type="text/javascript" src="js/bootstrap-filestyle.min.js"></script>
+  <script type="text/javascript" src="js/templatemo-script.js"></script> <!-- Templatemo Script -->
+  <!-- 底部 -->
+  <footer class="text-right">
+    <p>
+      Designed By <a href="#">林宏勲</a>
+      Phone : <a href="tel:0956168012">0956168012</a>
+      eMail : <a href="mailto:cht_lin@cht.com.tw">cht_lin@cht.com.tw</a>
+    </p>
+  </footer>
+</body>
+
+</html>

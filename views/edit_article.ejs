@@ -9,13 +9,15 @@
   <link href="/css/font-awesome.min.css" rel="stylesheet">
   <link href="/css/bootstrap.min.css" rel="stylesheet">
   <link href="/css/templatemo-style.css" rel="stylesheet">
-  <!-- CKEditor -->
-  <script src="/js/ckeditor.js"></script>
+
   <!-- JS -->
   <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script> <!-- jQuery -->
   <script type="text/javascript" src="js/bootstrap-filestyle.min.js"></script>
   <script type="text/javascript" src="js/templatemo-script.js"></script> <!-- Templatemo Script -->
   <script src="/js/myJS.js"></script>
+  <!-- CKEditor -->
+  <script src="/ckeditor/ckeditor.js"></script>
+  <script src="/ckeditor/adapters/jquery.js"></script>
 
 </head>
 
@@ -109,31 +111,15 @@
       eMail : <a href="mailto:cht_lin@cht.com.tw">cht_lin@cht.com.tw</a>
     </p>
   </footer>
-  
+
   <script>
-    ClassicEditor
-      .create(document.querySelector('#content'), {
-        toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', '|', 'imageUpload', 'imageInsert', 'insertTable', 'tableInsert', 'undo', 'redo'],
-        language: 'zh-hant',
-        table: {
-          contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells']
-        },
-        heading: {
-          options: [
-            { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
-            { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
-            { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
-          ]
-        },
-        placeholder: '輸入內容...'
-      })
-      .then(editor => {
-        console.log(Array.from(editor.ui.componentFactory.names()));
-      })
-      .catch(error => {
-        console.error(error);
+    $(document).ready(function () {
+      $('#content').ckeditor({
+        filebrowserImageUploadUrl: 'assets/uploads'
       });
+    });
   </script>
+
 </body>
 
 </html>

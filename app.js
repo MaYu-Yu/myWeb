@@ -32,7 +32,7 @@ app.engine('ejs', require('ejs').renderFile);
 const upload = multer({
     dest: 'uploads/',
     limits: {
-        fileSize: 10000000 // 限制上傳檔案大小為 1 MB
+        fileSize: 10000000 // 限制上傳檔案大小為 10 MB
     }
 });
 
@@ -201,7 +201,7 @@ app.get('/article', function (req, res) {
         if (error) throw error;
 
         if (results.length === 0) {
-            res.status(404).send('No articles found');
+            res.render('article', { articles: [] });
         } else {
             const articles = results.map(result => {
                 return {

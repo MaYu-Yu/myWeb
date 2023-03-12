@@ -9,6 +9,8 @@
   <link href="/css/font-awesome.min.css" rel="stylesheet">
   <link href="/css/bootstrap.min.css" rel="stylesheet">
   <link href="/css/templatemo-style.css" rel="stylesheet">
+  <!-- JS -->
+  <script src="/js/myJS.js"></script>
 </head>
 
 <body>
@@ -56,16 +58,16 @@
         <div class="templatemo-flex-row flex-content-row">
           <!-- table -->
           <div class="col-1">
-            <div class="panel panel-default templatemo-content-widget white-bg no-padding templatemo-overflow-hidden">
-              <i class="fa fa-times"></i>
-              <% for (var i=0; i < tables.length; i++) { %>
+            <% for (var i=0; i < tables.length; i++) { %>
+              <div class="panel panel-default templatemo-content-widget white-bg no-padding templatemo-overflow-hidden">
+                <i class="fa fa-times" onclick="hide(this.parentElement)"></i>
                 <div class="panel-heading templatemo-position-relative">
                   <h1 class="text-uppercase">
-                    <%= tables[i].name %>
+                    <td><a href="/database/<%= tables[i].name %>"><%= tables[i].name %></a></td>
                   </h1>
                 </div>
-                <div class="table-responsive">
-                  <table class="table table-striped table-bordered" id="table">
+                <div class="table-responsive" id="table<%= i %>">
+                  <table class="table table-striped table-bordered">
                     <thead>
                       <tr>
                         <% tables[i].headers.forEach(function(header) { %>
@@ -88,11 +90,12 @@
                     </tbody>
                   </table>
                 </div>
+              </div>
               <% } %>
-            </div>
           </div>
         </div>
       </div>
+      
     </div>
   </div>
   <!-- bottom -->

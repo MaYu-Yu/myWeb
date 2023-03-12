@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="utf-8">
+    <title>二股 - Home</title>
+    <!-- CSS -->
+    <link href="/css/OpenSans.css" rel="stylesheet" type="text/css">
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/templatemo-style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Left nav -->
+    <div class="templatemo-flex-row">
+        <div class="templatemo-sidebar">
+            <header class="templatemo-site-header">
+                <h1><a href="/">一網維二股</a></h1>
+            </header>
+            <!-- Search box -->
+            <form class="templatemo-search-form" role="search">
+                <div class="input-group">
+                    <button type="submit" class="fa fa-search"></button>
+                    <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+                </div>
+            </form>
+            <div class="mobile-menu-icon">
+                <i class="fa fa-bars"></i>
+            </div>
+
+            <nav class="templatemo-left-nav">
+                <ul>
+                    <li><a href="/"><i class="fa fa-home fa-fw"></i>首頁</a></li>
+                    <li><a href="/article"><i class="fa fa-book fa-fw"></i>文章</a></li>
+                    <li><a href="/database" class="active"><i class="fa fa-database fa-fw"></i>資料庫</a></li>
+                </ul>
+            </nav>
+        </div>
+        <!-- Top nav -->
+        <div class="templatemo-content col-1 light-gray-bg">
+            <div class="templatemo-top-nav-container">
+                <div class="row">
+                    <nav class="templatemo-top-nav col-lg-12 col-md-12">
+                        <ul class="text-uppercase">
+                            <li><a href="/database" class="active">內容</a></li>
+                            <li><a href="/post_article"><i class="fa fa-sliders fa-fw"></i>發表文章</a></li>
+                            <li><a href="/add_database"><i class="fa fa-sliders fa-fw"></i>新增資料庫</a></li>
+                            <li><a href="/login"><i class="fa fa-eject fa-fw"></i>登入</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- context -->
+            <div class="templatemo-content-container">
+                <div class="templatemo-flex-row flex-content-row">
+                    <!-- table -->
+                    <div class="col-1">
+                        <div
+                            class="panel panel-default templatemo-content-widget white-bg no-padding templatemo-overflow-hidden">
+                            <div class="panel-heading templatemo-position-relative">
+                                <h1 class="text-uppercase">
+                                    <td>
+                                        <%= name %>
+                                    </td>
+                                </h1>
+                            </div>
+                            <div class="table-responsive">
+                                <form>
+                                    <table class="table table-striped table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <% headers.forEach(header => { %>
+                                                <th>
+                                                    <%= header %>
+                                                </th>
+                                                <% }); %>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% rows.forEach((row, rowIndex) => { %>
+                                            <tr data-row-id="<%= row.id %>">
+                                                <% Object.entries(row).forEach(([key, value], colIndex) => { %>
+                                                <% if (colIndex === 0) { %>
+                                                <td>
+                                                    <%= value %>
+                                                    <input type="text" name="<%= key %>" value="<%= value %>" style="display:none;">
+                                                </td>
+                                
+                                                <% } else { %>
+                                                <td>
+                                                    <input type="text" name="<%= key %>" value="<%= value %>">
+                                                </td>
+                                                <% } %>
+                                                <% }); %>
+                                                <td>
+                                                    <button type="button" class="edit-btn" data-row="<%= rowIndex %>">儲存</button>
+                                                </td>
+                                            </tr>
+                                            <% }); %>
+                                        </tbody>
+                                    </table>
+                                </form>
+                                
+                                <script>
+                                    const editBtns = document.querySelectorAll('.edit-btn');
+                                    editBtns.forEach(btn => {
+                                        btn.addEventListener('click', event => {
+                                            const rowIndex = event.target.getAttribute('data-row');
+                                            const form = document.createElement('form');
+                                            form.method = 'POST';
+                                            form.action = '/edit_database_to_db';
+                                    
+                                            // Add hidden input for table name
+                                            const table_name_input = document.createElement('input');
+                                            table_name_input.type = 'hidden';
+                                            table_name_input.name = 'table_name';
+                                            table_name_input.value = '<%= name %>';
+                                            form.appendChild(table_name_input);
+                                    
+                                            // Add hidden inputs for table headers
+                                            document.querySelectorAll('thead tr th').forEach(th => {
+                                                const inputEl = document.createElement('input');
+                                                inputEl.type = 'hidden';
+                                                inputEl.name = 'headers[]';
+                                                inputEl.value = th.textContent.trim();
+                                                form.appendChild(inputEl);
+                                            });
+                                    
+                                            // Add hidden inputs for row data
+                                            const rowInputs = event.target.closest('tr').querySelectorAll('input[type="text"]');
+                                            rowInputs.forEach(input => {
+                                                const name = input.getAttribute('name');
+                                                const value = input.value;
+                                                const inputEl = document.createElement('input');
+                                                inputEl.type = 'hidden';
+                                                inputEl.name = `data[${name}]`;
+                                                inputEl.value = value;
+                                                form.appendChild(inputEl);
+                                            });
+                                    
+                                            document.body.appendChild(form);
+                                            form.submit();
+                                        });
+                                    });
+                                    
+                                </script>
+                                
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- bottom -->
+    <footer class="text-right">
+        <p>
+            Designed By <a href="#">林宏勲</a>
+            Phone : <a href="tel:0956168012">0956168012</a>
+            eMail : <a href="mailto:cht_lin@cht.com.tw">cht_lin@cht.com.tw</a>
+        </p>
+    </footer>
+</body>
+
+</html>

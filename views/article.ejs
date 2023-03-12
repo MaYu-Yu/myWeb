@@ -9,6 +9,9 @@
   <link href="/css/font-awesome.min.css" rel="stylesheet">
   <link href="/css/bootstrap.min.css" rel="stylesheet">
   <link href="/css/templatemo-style.css" rel="stylesheet">
+
+  <!-- JS -->
+  <script src="/js/myJS.js"></script>
 </head>
 
 <body>
@@ -57,15 +60,18 @@
           <!-- loop article -->
           <% articles.forEach(function(article) { %>
             <div class="templatemo-content-widget white-bg col-2">
-              <i class="fa fa-times"></i>
+              <i class="fa fa-times" onclick="hide(this.parentElement)"></i>
               <h1 class="templatemo-inline-block">
-                <%= article.title %>
+                <a href="/article/<%= article.id %>">
+                  <%= article.title %>
+                </a>
               </h1>
               <div class="date">
                 <%= article.author %>
-                <%= article.created_at.toLocaleDateString('zh-CN') %>
+                  <%= article.created_at.toLocaleDateString('zh-CN') %>
               </div>
-              <button type="button" name="edit-btn-<%= article.id %>" class="templatemo-blue-button" data-id="<%= article.id %>">修改</button>
+              <button type="button" name="edit-btn-<%= article.id %>" class="templatemo-blue-button"
+                data-id="<%= article.id %>">修改</button>
               <hr>
               <%- article.content %>
             </div>
@@ -82,18 +88,6 @@
       eMail : <a href="mailto:cht_lin@cht.com.tw">cht_lin@cht.com.tw</a>
     </p>
   </footer>
-
-  <script>
-    window.onload = function () {
-      const editBtns = document.querySelectorAll('.templatemo-blue-button');
-      editBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const articleId = btn.dataset.id;
-          window.location.href = '/edit_article/' + articleId; // redirect to edit page with article ID as parameter
-        });
-      });
-    };
-  </script>
 
 </body>
 

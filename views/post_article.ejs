@@ -11,6 +11,12 @@
   <link href="/css/templatemo-style.css" rel="stylesheet">
   <!-- CKEditor -->
   <script src="/js/ckeditor.js"></script>
+  <!-- JS -->
+  <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script> <!-- jQuery -->
+  <script type="text/javascript" src="js/bootstrap-filestyle.min.js"></script>
+  <script type="text/javascript" src="js/templatemo-script.js"></script> <!-- Templatemo Script -->
+  <script src="/js/myJS.js"></script>
+
 </head>
 
 <body>
@@ -56,7 +62,7 @@
       <div class="templatemo-content-container">
         <div class="templatemo-content-widget white-bg">
           <h1 class="margin-bottom-10">發表文章</h1>
-          <form action="article_to_db" method="POST" enctype="multipart/form-data">
+          <form action="add_article_to_db" method="POST" enctype="multipart/form-data">
             <div class="row form-group">
               <div class="col-lg-3 col-md-3 form-group">
                 <label class="control-label templatemo-block">發表者</label>
@@ -95,14 +101,21 @@
     </div>
   </div>
 
+  <!-- 底部 -->
+  <footer class="text-right">
+    <p>
+      Designed By <a href="#">林宏勲</a>
+      Phone : <a href="tel:0956168012">0956168012</a>
+      eMail : <a href="mailto:cht_lin@cht.com.tw">cht_lin@cht.com.tw</a>
+    </p>
+  </footer>
+  
   <script>
     // 自動設定發表者為第一個選項
-    var authorSelect = document.querySelector('select[name="author"]');
-    if (authorSelect) {
-      authorSelect.selectedIndex = 0;
-    }
-
     const author = document.getElementById('author');
+    if (author) {
+      author.selectedIndex = 0;
+    }
     const submitButton = document.querySelector('button[type="submit"]');
 
     submitButton.addEventListener('click', (event) => {
@@ -113,43 +126,30 @@
       }
     });
   </script>
-
   <script>
     ClassicEditor
-      .create(document.querySelector('#content'), {
+    .create(document.querySelector('#content'), {
         toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', '|', 'imageUpload', 'imageInsert', 'insertTable', 'tableInsert', 'undo', 'redo'],
         language: 'zh-hant',
         table: {
-          contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells']
+            contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells']
         },
         heading: {
-          options: [
-            { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
-            { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
-            { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
-          ]
+            options: [
+                { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
+            ]
         },
         placeholder: '輸入內容...'
-      })
-      .then(editor => {
+    })
+    .then(editor => {
         console.log(Array.from(editor.ui.componentFactory.names()));
-      })
-      .catch(error => {
+    })
+    .catch(error => {
         console.error(error);
-      });
+    });
   </script>
-  <!-- JS -->
-  <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script> <!-- jQuery -->
-  <script type="text/javascript" src="js/bootstrap-filestyle.min.js"></script>
-  <script type="text/javascript" src="js/templatemo-script.js"></script> <!-- Templatemo Script -->
-  <!-- 底部 -->
-  <footer class="text-right">
-    <p>
-      Designed By <a href="#">林宏勲</a>
-      Phone : <a href="tel:0956168012">0956168012</a>
-      eMail : <a href="mailto:cht_lin@cht.com.tw">cht_lin@cht.com.tw</a>
-    </p>
-  </footer>
 </body>
 
 </html>
